@@ -91,6 +91,10 @@ vector<Producto*> Trastienda::ObtenerInventario(){
 void Trastienda::GuardarEnStreamBinario(ostream *streamSalida)
 {
     streamSalida->write((char *)this, sizeof(this->ObtenerNombre()));
+    streamSalida->write((char *)this, sizeof(this->ObtenerSitioWeb()));
+    streamSalida->write((char *)this, sizeof(this->ObtenerDireccion()));
+    streamSalida->write((char *)this, sizeof(this->ObtenerTelefono()));
+
     for (Producto *producto : this->ObtenerInventario())
     {
         streamSalida->write((char *)producto, sizeof(Producto));

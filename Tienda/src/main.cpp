@@ -23,7 +23,6 @@ int main()
     //Trastienda *trastienda = new Trastienda();
     Trastienda *trastienda = new Trastienda("micho", "micho.com", "de tu fondillo pa'a dentro", "bizcocho");
     
-
     Producto *producto1 = new Producto(1, "harina", 1);
     Producto *producto2 = new Producto(2, "leche", 2);
     Producto *producto3 = new Producto(3, "pescado", 3);
