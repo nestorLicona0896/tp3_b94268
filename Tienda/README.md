@@ -1,1 +1,5 @@
-# libreria de clases para el programa cliente que se encarga de leer y escribir un archivo binario con el fin de dar mantenimiento por existencias a los productos de una tienda
+# libreria de clases para un programa cliente que se encarga de leer y escribir un archivo binario con el fin de dar mantenimiento por existencias a los productos de una tienda
+
+# para compilar el codigo utilice el comando make y para su ejecución utilice el comando bin/libreria o ./bin/libreria
+
+# para compilar las pruebas unitarias utilice el comando make test y para su ejecucion use bin/tests o ./bin/tests
