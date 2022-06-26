@@ -28,7 +28,7 @@ namespace tp3
         string ObtenerNombre();
         int ObtenerExistencias();
 
-        //friend ostream& operator << (ostream &o, Producto *producto);     
+        friend ostream& operator << (ostream &o, Producto *producto);     
 
  };
 

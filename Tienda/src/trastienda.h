@@ -42,7 +42,7 @@ namespace tp3
 
             void GuardarEnStreamBinario(ostream *streamSalida);
 
-            //friend ostream& operator << (ostream &o, Trastienda *tienda);
+            friend ostream& operator << (ostream &o, Trastienda *tienda);
 
     };
 }

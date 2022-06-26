@@ -44,7 +44,7 @@ int Producto::ObtenerExistencias(){
     return this->existencias;
 }
 
-/*ostream &operator << (ostream &o, Producto *producto){
+ostream &operator << (ostream &o, Producto *producto){
     o << "[" << producto->ObtenerId() << "] - " << producto->ObtenerNombre() << " " << producto->ObtenerExistencias();  
     return o;
-} */
+} 

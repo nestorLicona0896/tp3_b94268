@@ -97,7 +97,7 @@ void Trastienda::GuardarEnStreamBinario(ostream *streamSalida)
     }
 }
 
-/*ostream& operator << (ostream &o, Trastienda *tienda){
+ostream& operator << (ostream &o, Trastienda *tienda){
 
     o << tienda->ObtenerNombre() << endl;
     o << tienda->ObtenerSitioWeb() << endl;
@@ -106,10 +106,10 @@ void Trastienda::GuardarEnStreamBinario(ostream *streamSalida)
 
     for (Producto *prod : tienda->ObtenerInventario())
     {
-        o << prod << endl;
+        o << &prod << endl;
     }
     
     return o;
-}*/
+}
 
 

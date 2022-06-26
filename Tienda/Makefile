@@ -1,14 +1,13 @@
 FLAGS = -g -c --std=c++17
 
 all:
-	mkdir -p obj
+	
 	mkdir -p bin	
-	g++ $(FLAGS) src/producto.cpp -o obj/producto.o
-	g++ $(FLAGS) src/trastienda.cpp -o obj/trastienda.o		
-	g++ -shared -o bin/libtrastienda.so obj/trastienda.o	
-	g++ -shared -o bin/libproducto.so obj/producto.o
-	mkdir -p bin/include
-	cp src/trastienda.h src/producto.h ./bin/include
+	g++ $(FLAGS) src/main.cpp -o bin/main.o
+	g++ $(FLAGS) src/producto.cpp -o bin/producto.o
+	g++ $(FLAGS) src/trastienda.cpp -o bin/trastienda.o	
+	g++ -o bin/trastienda bin/main.o bin/producto.o bin/trastienda.o
+	
 	
 test:
 	mkdir -p obj
