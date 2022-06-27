@@ -39,13 +39,14 @@ namespace tp3
             void AgregarProducto(Producto *unProducto);
             void EditarProducto(int idActual, int nuevoId, string nuevoNombre, int lasExistencias);
             void EliminarProducto(int id);
+            void MostrarProductos();
             Producto* ObtenerProducto(int id);
             vector<Producto*> ObtenerInventario();
 
             void GuardarEnStreamBinario(ostream *streamSalida);
             void CargarDesdeStreamBinario(istream *streamEntrada);
 
-            void Mostrar();
+            
 
             //friend ostream& operator << (ostream o, Trastienda *tienda);
 
