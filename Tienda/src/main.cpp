@@ -17,12 +17,11 @@ int main()
     cout << "Tamaño en bytes de una variable long: " << sizeof(long) << endl;
     cout << "Tamaño en bytes de una variable float: " << sizeof(float) << endl;
     cout << "Tamaño en bytes de una variable double: " << sizeof(double) << endl;
-    cout << "Tamaño en bytes de una variable empleado: " << sizeof(Producto) << endl; */
+    cout << "Tamaño en bytes de una variable empleado: " << sizeof(Trastienda) << endl;*/ 
     
     // guardar una trastienda en un archivo binario
-    //Trastienda *trastienda = new Trastienda();
-    Trastienda *trastienda = new Trastienda("micho", "micho.com", "de tu fondillo pa'a dentro", "bizcocho");
-    
+    Trastienda *trastienda = new Trastienda("TIENDA", "algo.com", "100 e, 25 n, CS-1", "87654321");
+
     Producto *producto1 = new Producto(1, "harina", 1);
     Producto *producto2 = new Producto(2, "leche", 2);
     Producto *producto3 = new Producto(3, "pescado", 3);
@@ -44,6 +43,27 @@ int main()
     archivoSalida.close();
 
     delete trastienda;
+
+    // Ejemplo de leer trastienda desde un archivo binario
+    
+    ifstream archivoEntrada;
+    archivoEntrada.open("trastienda.dat", ios::in|ios::binary);
+
+    if (!archivoEntrada.is_open())
+    {
+        cerr << "No se pudo abrir archivo trastienda.dat para leer los datos";
+        return -1;
+    }
+    
+    Trastienda *trastienda1 = new Trastienda();
+
+    trastienda1->CargarDesdeStreamBinario(&archivoEntrada);
+
+    trastienda1->Mostrar();
+
+    delete trastienda1;
+
+    archivoEntrada.close();
 
     return 0;
 }

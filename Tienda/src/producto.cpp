@@ -6,7 +6,7 @@ using namespace tp3;
 
 Producto::Producto(){
     this->id = 0;
-    strcpy(this->nombre, "");
+    strcpy(this->nombre, " ");
     this->existencias = 0;
 }
 
@@ -44,7 +44,11 @@ int Producto::ObtenerExistencias(){
     return this->existencias;
 }
 
-ostream &operator << (ostream &o, Producto *producto){
+void Producto::Mostrar(){
+    cout << this->ObtenerId() << " - " << this->ObtenerNombre() << ", " << this->ObtenerExistencias() << "\n";
+}
+
+/*ostream &operator << (ostream o, Producto *producto){
     o << "[" << producto->ObtenerId() << "] - " << producto->ObtenerNombre() << " " << producto->ObtenerExistencias();  
     return o;
-} 
+} */

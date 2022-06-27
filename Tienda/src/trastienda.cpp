@@ -87,21 +87,50 @@ vector<Producto*> Trastienda::ObtenerInventario(){
     return this->inventario;
 }
 
-
 void Trastienda::GuardarEnStreamBinario(ostream *streamSalida)
-{
-    streamSalida->write((char *)this, sizeof(this->ObtenerNombre()));
-    streamSalida->write((char *)this, sizeof(this->ObtenerSitioWeb()));
-    streamSalida->write((char *)this, sizeof(this->ObtenerDireccion()));
-    streamSalida->write((char *)this, sizeof(this->ObtenerTelefono()));
-
+{           
+    streamSalida->write((char *)this->nombre, sizeof(char[15]));
+    streamSalida->write((char *)this->sitioWeb, sizeof(char[24]));
+    streamSalida->write((char *)this->direccion, sizeof(char[24]));
+    streamSalida->write((char *)this->telefono, sizeof(char[8]));
     for (Producto *producto : this->ObtenerInventario())
     {
         streamSalida->write((char *)producto, sizeof(Producto));
     }
 }
 
-ostream& operator << (ostream &o, Trastienda *tienda){
+void Trastienda::CargarDesdeStreamBinario(istream *streamEntrada){
+    // Calcule cantidad de registros
+    int BytesTrastienda = sizeof(this->nombre) + sizeof(this->sitioWeb) + sizeof(this->direccion) + sizeof(this->telefono); 
+    streamEntrada->seekg(0, ios::end);    
+    int cantidadBytesEnArchivo = streamEntrada->tellg();
+    int cantidadProductos = (cantidadBytesEnArchivo - BytesTrastienda) / sizeof(Producto);
+        
+    //la info de la tienda: 
+    streamEntrada->seekg(0, ios::beg);
+    streamEntrada->read((char *)this->nombre, sizeof(this->nombre));
+    streamEntrada->read((char *)this->sitioWeb, sizeof(this->sitioWeb));
+    streamEntrada->read((char *)this->direccion, sizeof(this->direccion));
+    streamEntrada->read((char *)this->telefono, sizeof(this->telefono));
+
+    // Leer cada producto
+    streamEntrada->seekg(BytesTrastienda, ios::beg);
+    for (int indice = 0; indice < cantidadProductos; indice++)
+    {
+        Producto *producto = new Producto();
+        streamEntrada->read((char *)producto, sizeof(Producto)); // variable para guardar y cuántos bytes leo
+        this->AgregarProducto(producto);
+    }  
+}
+
+void Trastienda::Mostrar(){
+    cout << this->ObtenerNombre() << "\nweb: " << this->ObtenerSitioWeb() << "\ndireccion:" << this->ObtenerDireccion() << "\ntelefono: " << this->ObtenerTelefono() << endl;
+    for(Producto *p : this->ObtenerInventario()) {
+       p->Mostrar();
+    }
+}
+
+/*ostream& operator << (ostream o, Trastienda *tienda){
 
     o << tienda->ObtenerNombre() << endl;
     o << tienda->ObtenerSitioWeb() << endl;
@@ -110,10 +139,9 @@ ostream& operator << (ostream &o, Trastienda *tienda){
 
     for (Producto *prod : tienda->ObtenerInventario())
     {
-        o << &prod << endl;
-    }
-    
+        o << prod << endl;
+    }    
     return o;
-}
+}*/
 
 

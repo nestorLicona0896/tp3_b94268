@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "producto.h"
-#include <iostream>
 #include <string>
 
 using namespace std;
@@ -13,11 +12,14 @@ namespace tp3
 
     class Trastienda { 
 
-        vector<Producto *> inventario;
+        vector<Producto *> inventario; 
+       
         char nombre[15]; // 15 caracteres
         char sitioWeb[24]; // 24 caracteres
         char direccion[24] ; // 24 caracteres
-        char telefono[8]; // 8 caracteres    
+        char telefono[8]; // 8 caracteres   
+
+       
 
         public:
 
@@ -41,8 +43,11 @@ namespace tp3
             vector<Producto*> ObtenerInventario();
 
             void GuardarEnStreamBinario(ostream *streamSalida);
+            void CargarDesdeStreamBinario(istream *streamEntrada);
 
-            friend ostream& operator << (ostream &o, Trastienda *tienda);
+            void Mostrar();
+
+            //friend ostream& operator << (ostream o, Trastienda *tienda);
 
     };
 }
