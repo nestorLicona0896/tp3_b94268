@@ -44,8 +44,11 @@ int Producto::ObtenerExistencias(){
     return this->existencias;
 }
 
-void Producto::Mostrar(){
-    cout << this->ObtenerId() << " - " << this->ObtenerNombre() << ", " << this->ObtenerExistencias() << "\n";
+string Producto::Mostrar()
+{
+    string hilera = "";
+    hilera +=  to_string(this->ObtenerId()) + " - " + this->ObtenerNombre() + ", " + to_string(this->ObtenerExistencias());
+    return hilera;
 }
 
 /*ostream &operator << (ostream o, Producto *producto){

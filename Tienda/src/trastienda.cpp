@@ -83,19 +83,25 @@ void Trastienda::EditarProducto(int idActual, int nuevoId, string nuevoNombre, i
     }
 }
 
-void Trastienda::EliminarProducto(int id)
+bool Trastienda::EliminarProducto(int id)
 {
-    for(Producto *p : this->inventario){
-        if(id == p->ObtenerId()) {
-            delete p;
-            return;
+    bool result = false;
+    int index = 0;
+    do {
+
+        if(this->ObtenerInventario().at(index)->ObtenerId() == id) {
+            delete ObtenerInventario().at(index) ;
+            result = true;
         }
-    }
+        index++;
+    } while(result != true && index < this->ObtenerInventario().size());
+    
+    return result;
 }
 
 Producto* Trastienda::ObtenerProducto(int id)
 {
-    return this->inventario.at(id);
+    return this->inventario.at(id-1);
 }
 
 vector<Producto*> Trastienda::ObtenerInventario(){
@@ -139,13 +145,15 @@ void Trastienda::CargarDesdeStreamBinario(istream *streamEntrada)
     }  
 }
 
-void Trastienda::MostrarProductos()
+string Trastienda::MostrarProductos()
 {
-    cout << this->ObtenerNombre() << "\nweb: " << this->ObtenerSitioWeb() << "\ndireccion: " << this->ObtenerDireccion() << "\ntelefono: " << this->ObtenerTelefono() << endl;
-    cout << "inventario: " << endl;
+    string hilera = "";
+    hilera +=  this->ObtenerNombre() + "\nweb: " + this->ObtenerSitioWeb() + "\ndireccion: " + this->ObtenerDireccion() + "\ntelefono: " + this->ObtenerTelefono();
+    hilera += "\ninventario:\n";
     for(Producto *p : this->ObtenerInventario()) {
-       p->Mostrar();
+       hilera += p->Mostrar() + "\n";
     }
+    return hilera;
 }
 
 /*ostream& operator << (ostream o, Trastienda *tienda)
